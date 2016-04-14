@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+       <context:annotation-config/>
+       <context:component-scan base-package="whm.mybatis.*"/>
+       <aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+       <tx:annotation-driven transaction-manager="transactionManager" />
+
+       <!-- 配置datasource数据源,使用c3p0连接池 -->
+       <bean id="dataSourceT" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+              <property name="driverClass" value="${database.driverClassName}"/>
+              <property name="jdbcUrl" value="${database.url}"/>
+              <property name="user" value="${database.username}"/>
+              <property name="password" value="${database.password}"/>
+              <property name="initialPoolSize" value="${c3p0.pool.size.ini}"/>
+              <property name="maxPoolSize" value="${c3p0.pool.size.max}"/>
+              <property name="minPoolSize" value="${c3p0.pool.size.min}"/>
+              <property name="maxIdleTime" value="${maxIdleTime}"/>
+              <property name="checkoutTimeout" value="${checkoutTime}"/>
+       </bean>
+       <!-- 配置mybatis sqlsessionFactory  -->
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSourceT"/>
+              <property name="configLocation" value="classpath:mybatis-config.xml"/>
+       </bean>
+       <!-- 配置sqlsessionTemplate -->
+       <bean id="template" class="org.mybatis.spring.SqlSessionTemplate">
+              <constructor-arg index="0" ref="sqlSessionFactory"/>
+       </bean>
+       <!-- 别名的配置方法 -->
+       <alias name="template" alias="templateWrite"/>
+</beans>

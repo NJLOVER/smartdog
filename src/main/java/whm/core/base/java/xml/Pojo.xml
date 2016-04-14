@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.6.0_39" class="java.beans.XMLDecoder">
+    <object class="java.util.ArrayList">
+        <void method="add">
+            <object class="whm.core.base.java.xml.Pojo">
+                <void property="date">
+                    <object class="java.util.Date">
+                        <long>1448935994171</long>
+                    </object>
+                </void>
+                <void property="name">
+                    <string>123</string>
+                </void>
+                <void property="pojo2">
+                    <object class="whm.core.base.java.xml.Pojo2">
+                        <void property="xxx">
+                            <string>1111</string>
+                        </void>
+                    </object>
+                </void>
+            </object>
+        </void>
+    </object>
+</java> 

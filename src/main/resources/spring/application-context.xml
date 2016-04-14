@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <!--配置文件引入 -->
+       <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="locations">
+                     <list>
+                            <value>classpath:db.properties</value>
+                     </list>
+              </property>
+       </bean>
+       <import resource="classpath:spring/application-db.xml"/>
+       <!--<import resource="classpath:spring/application-qrtz.xml"/>-->
+       <bean id="myBeanFactoryPoss" class="whm.core.base.spring.PostProcessor.MyBeanFactoryPostProcessor"/>
+       <bean id="myBeanPoss" class="whm.core.base.spring.PostProcessor.MyBeanProcessor"/>
+       <bean id="possBean" class="whm.core.base.spring.PostProcessor.MyProcessorBean">
+              <property name="userName" value="test"/>
+              <property name="pwd" value="123"/>
+       </bean>
+       <bean id="contructTest" class="whm.core.base.spring.ConstructTest">
+              <constructor-arg value="1"/>
+              <constructor-arg value="123"/>
+              <constructor-arg value="345"/>
+       </bean>
+       <!--<bean id="test" class="whm.core.base.quartz.vo.BaseJob"/>-->
+</beans>
