@@ -1,6 +1,7 @@
 package whm.core.base.java.classloader;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandlerFactory;
@@ -15,5 +16,16 @@ public class PathClassLoader extends URLClassLoader {
 
     public PathClassLoader(URL[] urls) {
         super(urls);
+    }
+
+    public Class loadClass(String path){
+        File file = new File(path);
+        try {
+            URL url = file.toURI().toURL();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

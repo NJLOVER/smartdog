@@ -16,10 +16,11 @@ public class JavaProxyHandler implements InvocationHandler{
         this.target = target;
     }
 
-    @Override
+
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         before();
-        Object obj = MethodUtils.invokeMethod(target,method.getName(),args);
+        Object obj = method.invoke(target,args);
+        //Object obj = MethodUtils.invokeMethod(target,method.getName(),args);
         after();
         return obj;
     }

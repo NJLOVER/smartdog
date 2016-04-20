@@ -82,6 +82,8 @@ public class DiskIO implements Serializable{
                 System.out.println(str);
             }
 
+            BufferedInputStream bois = new BufferedInputStream(fis);
+
             serialize();
         } catch (Exception e) {
             e.printStackTrace();

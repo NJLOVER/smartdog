@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,6 +40,16 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,Ser
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public String findCookie(String key){
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals(key)){
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 
     public void setServletRequest(HttpServletRequest httpServletRequest) {
