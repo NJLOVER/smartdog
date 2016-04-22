@@ -83,7 +83,6 @@ public class SocketTest {
 
         }
 
-        @Override
         public void run() {
             init();
         }
@@ -96,7 +95,6 @@ public class SocketTest {
                 new Thread(this).start();
             }
 
-            @Override
             public void run() {
                 try {
                     DataInputStream data = new DataInputStream(socket.getInputStream());

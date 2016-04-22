@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by thinkpad on 2015/11/25.
@@ -38,6 +39,22 @@ public class BaseAction extends ActionSupport implements ServletRequestAware,Ser
             this.response.getWriter().flush();
             this.response.getWriter().close();
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void originReturnObj(Object obj){
+        String content = JSON.toJSONString(obj);
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/json; charset=utf-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods","POST");
+        response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type");
+        try {
+            response.getWriter().write(content);
+            response.getWriter().flush();
+            response.getWriter().close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
