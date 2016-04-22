@@ -1,9 +1,7 @@
 package whm.core.base;
 
-import org.apache.solr.common.util.SolrjNamedThreadFactory;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisCluster;
 
 /**
  * Created by thinkpad on 2015/10/26.

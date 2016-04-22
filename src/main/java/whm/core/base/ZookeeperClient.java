@@ -20,7 +20,6 @@ public class ZookeeperClient implements Watcher{
         countDownLatch.await();
     }
 
-    @Override
     public void process(WatchedEvent event)
     {
         if (event.getState() == Event.KeeperState.SyncConnected)

@@ -1,6 +1,5 @@
 package whm.core.base.java.nio;
 
-import org.apache.ibatis.annotations.SelectKey;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -60,7 +59,7 @@ public class Server {
         StringBuffer sb = new StringBuffer();
         SocketChannel sc = (SocketChannel)selectionKey.channel();
         ByteBuffer bb = ByteBuffer.allocate(10);
-        sc.read(bb);
+        int  count = sc.read(bb);
         byte[] data = bb.array();
         String clientInfo = new String(data,"utf-8").trim();
         System.out.println("收到客户端消息:"+clientInfo);
@@ -74,5 +73,6 @@ public class Server {
         Server server = new Server();
         server.init();
         server.listen();
+
     }
 }

@@ -69,7 +69,6 @@ public class RedisClient {
 
     public static void psubscribe(final JedisPubSub pubSub, final String pattern){
         new Thread(new Runnable(){
-            @Override
             public void run() {
                 getJedis().psubscribe(pubSub,pattern);
             }

@@ -36,7 +36,6 @@ public abstract class AbstractSchedulerJob extends QuartzJobBean {
     //实际的执行方法
     public abstract void exc(ScheduleJob scheduleJob);
 
-    @Override
     protected void executeInternal(JobExecutionContext context){
         applicationContext = getAppliCxt(context);
         Date sdate = new Date();
